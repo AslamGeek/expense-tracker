@@ -1,7 +1,7 @@
 import React from 'react';
-import { Wallet, Sparkles, TrendingUp } from 'lucide-react';
+import { Wallet, TrendingUp, Layers } from 'lucide-react';
 
-export default function Header({ totalSpent, expenseCount }) {
+export default function Header({ totalSpent, expenseCount = 0 }) {
   const formattedTotal = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -11,18 +11,24 @@ export default function Header({ totalSpent, expenseCount }) {
   return (
     <header className="mb-8">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3.5">
           <div className="h-12 w-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-200">
             <Wallet className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
-              Expense Tracker
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-indigo-50 text-indigo-700 border border-indigo-200">
+            <div className="flex items-center gap-2">
+              <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+                Expense Tracker
+              </h1>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
                 Personal
               </span>
-            </h1>
-            <p className="text-sm text-slate-500">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600">
+                <Layers className="w-3 h-3" />
+                {expenseCount} {expenseCount === 1 ? 'item' : 'items'}
+              </span>
+            </div>
+            <p className="text-sm text-slate-500 mt-0.5">
               Manage your spending, track budgets, and view category insights
             </p>
           </div>
